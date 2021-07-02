@@ -4,7 +4,7 @@ import 'package:meraki/utils/constants.dart';
 import 'package:meraki/widgets/dateField.widget.dart';
 
 class BloodTestReportsScreen extends StatefulWidget {
-  static String id = "bloodTestReportsScreen_id";
+  static const String id = "bloodTestReportsScreen_id";
 
   @override
   _BloodTestReportsScreenState createState() => _BloodTestReportsScreenState();
