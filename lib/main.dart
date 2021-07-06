@@ -3,6 +3,7 @@ import 'package:meraki/screens/BloodTestReportsScreen/bloodTestReports.screen.da
 import 'package:meraki/screens/MenuScreen/menu.screen.dart';
 import 'package:meraki/screens/ScheduleAppointmentScreen/scheduleAppointment.screen.dart';
 import 'package:meraki/screens/MyDailyLogScreen/myDailyLog.screen.dart';
+import 'package:meraki/screens/SignUpScreen/signUp.screen.dart';
 import 'package:meraki/utils/constants.dart';
 
 void main() {
@@ -21,8 +22,9 @@ class Meraki_App extends StatelessWidget {
         BloodTestReportsScreen.id: (context) => BloodTestReportsScreen(),
         ScheduleAppointmentScreen.id: (context) => ScheduleAppointmentScreen(),
         MyDailyLogScreen.id: (context) => MyDailyLogScreen(),
+        SignUpScreen.id: (context) => SignUpScreen(),
       },
-      initialRoute: MenuScreen.id,
+      initialRoute: SignUpScreen.id,
     );
   }
 }

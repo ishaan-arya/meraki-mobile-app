@@ -21,7 +21,6 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
   WaterSelection selectedType;
   var water = 0.0;
   var _value = 0.0;
-  final List<bool> isSelected = [false, true];
 
   @override
   Widget build(BuildContext context) {
@@ -177,16 +176,19 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
               ),
               TextInputField(
                 hintText: 'QUALITY',
+                keyboardType: TextInputType.text,
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               Divider(thickness: 1.5, color: Colors.black),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               TextInputField(
                 hintText: 'FRUIT',
+                keyboardType: TextInputType.text,
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               TextInputField(
                 hintText: 'QUANTITY',
+                keyboardType: TextInputType.number,
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               AddItemButton(
@@ -200,10 +202,12 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               TextInputField(
                 hintText: 'EXERCISE TYPE',
+                keyboardType: TextInputType.text,
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               TextInputField(
                 hintText: 'DURATION',
+                keyboardType: TextInputType.datetime,
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               Center(

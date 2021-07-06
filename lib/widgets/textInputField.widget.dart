@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 
 class TextInputField extends StatelessWidget {
   final String hintText;
-  TextInputField({this.hintText});
+  final TextInputType keyboardType;
+
+  TextInputField({
+    @required this.hintText,
+    @required this.keyboardType,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -12,6 +18,7 @@ class TextInputField extends StatelessWidget {
       child: TextField(
         autocorrect: true,
         decoration: InputDecoration(hintText: hintText),
+        keyboardType: keyboardType,
       ),
     );
   }
