@@ -4,6 +4,7 @@ import 'package:meraki/screens/MenuScreen/menu.screen.dart';
 import 'package:meraki/screens/ScheduleAppointmentScreen/scheduleAppointment.screen.dart';
 import 'package:meraki/screens/MyDailyLogScreen/myDailyLog.screen.dart';
 import 'package:meraki/screens/SignUpScreen/signUp.screen.dart';
+import 'package:meraki/screens/SignInScreen/signIn.screen.dart';
 import 'package:meraki/utils/constants.dart';
 
 void main() {
@@ -23,8 +24,9 @@ class Meraki_App extends StatelessWidget {
         ScheduleAppointmentScreen.id: (context) => ScheduleAppointmentScreen(),
         MyDailyLogScreen.id: (context) => MyDailyLogScreen(),
         SignUpScreen.id: (context) => SignUpScreen(),
+        SignInScreen.id: (context) => SignInScreen(),
       },
-      initialRoute: SignUpScreen.id,
+      initialRoute: MyDailyLogScreen.id,
     );
   }
 }
