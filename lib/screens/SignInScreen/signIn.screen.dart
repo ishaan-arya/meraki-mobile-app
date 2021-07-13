@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meraki/utils/constants.dart';
 import 'package:meraki/screens/MenuScreen/menu.screen.dart';
+import 'package:meraki/widgets/largeButton.widget.dart';
 
 class SignInScreen extends StatefulWidget {
   static const String id = 'signInScreen_id';
@@ -59,21 +60,11 @@ class _SignInScreenState extends State<SignInScreen> {
             SizedBox(
               height: 40,
             ),
-            GestureDetector(
+            LargeButton(
               onTap: () {
                 Navigator.pushNamed(context, MenuScreen.id);
               },
-              child: Container(
-                height: 40,
-                width: 120,
-                decoration: BoxDecoration(
-                  color: kSecondaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text('SIGN IN', style: kButtonTextStyle),
-                ),
-              ),
+              buttonText: 'SIGN IN',
             )
           ],
         ),

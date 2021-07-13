@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:meraki/widgets/addItemButton.widget.dart';
 import 'package:meraki/widgets/homeButton.widget.dart';
 import 'package:meraki/utils/constants.dart';
+import 'package:meraki/widgets/largeButton.widget.dart';
 import 'package:meraki/widgets/timeField.widget.dart';
 import 'package:meraki/widgets/textInputField.widget.dart';
 
 enum WaterSelection {
   glasses,
   litres,
+}
+
+enum MealSelection {
+  measuringCups,
+  ml,
 }
 
 class MyDailyLogScreen extends StatefulWidget {
@@ -18,7 +24,10 @@ class MyDailyLogScreen extends StatefulWidget {
 }
 
 class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
-  WaterSelection selectedType;
+  WaterSelection selectedWaterType;
+  MealSelection selectedMealType;
+  String dropdownValue = 'Full';
+
   var water = 0.0;
   var _value = 0.0;
 
@@ -117,13 +126,13 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        selectedType = WaterSelection.glasses;
+                        selectedWaterType = WaterSelection.glasses;
                       });
                     },
                     child: Container(
                       height: 35,
                       width: 90,
-                      color: selectedType == WaterSelection.glasses
+                      color: selectedWaterType == WaterSelection.glasses
                           ? kActiveCardColor
                           : kInactiveCardColor,
                       child: Center(
@@ -140,13 +149,13 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        selectedType = WaterSelection.litres;
+                        selectedWaterType = WaterSelection.litres;
                       });
                     },
                     child: Container(
                       height: 35,
                       width: 90,
-                      color: selectedType == WaterSelection.litres
+                      color: selectedWaterType == WaterSelection.litres
                           ? kActiveCardColor
                           : kInactiveCardColor,
                       child: Center(
@@ -164,7 +173,7 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Center(
                 child: Text(
-                  "🌙 SLEEP",
+                  "SLEEP",
                   style: kSubheadingTextStyle,
                 ),
               ),
@@ -247,6 +256,178 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               Divider(thickness: 1.5, color: Colors.black),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: TextInputField(
+                      hintText: null,
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text('ML', style: kSubheadingTextStyle),
+                  ),
+                ],
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+              Center(
+                child: Text(
+                  'ALCOHOL',
+                  style: kSubheadingTextStyle,
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              Divider(thickness: 1.5, color: Colors.black),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              TextInputField(
+                hintText: 'MEAL',
+                keyboardType: TextInputType.text,
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+              TextInputField(
+                hintText: 'QUANTITY',
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedMealType = MealSelection.measuringCups;
+                      });
+                    },
+                    child: Container(
+                      height: 35,
+                      width: 170,
+                      color: selectedMealType == MealSelection.measuringCups
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
+                      child: Center(
+                        child: Text(
+                          'MEASURING CUPS',
+                          style: kSub3TextStyle,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedMealType = MealSelection.ml;
+                      });
+                    },
+                    child: Container(
+                      height: 35,
+                      width: 90,
+                      color: selectedMealType == MealSelection.ml
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
+                      child: Center(
+                        child: Text(
+                          'ML',
+                          style: kSub3TextStyle,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'FEELING AFTER MEAL',
+                    style: kSubheadingTextStyle,
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  DropdownButton<String>(
+                    value: dropdownValue,
+                    icon: Icon(Icons.arrow_downward),
+                    iconSize: 20,
+                    elevation: 16,
+                    underline: Container(
+                      height: 2,
+                      color: Colors.grey,
+                    ),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        dropdownValue = newValue;
+                      });
+                    },
+                    items: <String>[
+                      'Full',
+                      'Light',
+                      'Heavy',
+                      'Satisfied',
+                      'Unsatisfied',
+                      'Other',
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              AddItemButton(
+                buttonText: 'ADD MEAL',
+                onTap: () {},
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              Divider(thickness: 1.5, color: Colors.black),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              TextInputField(
+                hintText: 'MEDICINE',
+                keyboardType: TextInputType.text,
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+              TextInputField(
+                hintText: 'QUANTITY',
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              AddItemButton(
+                buttonText: 'ADD MEDICINE',
+                onTap: () {
+                  //implement add medicine functionality
+                },
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              Divider(thickness: 1.5, color: Colors.black),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              TextInputField(
+                hintText: 'ABILITY TO STICK TO THE PLAN',
+                keyboardType: TextInputType.multiline,
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              Divider(thickness: 1.5, color: Colors.black),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              TextInputField(
+                hintText: 'COMMENTS FOR THE DAY',
+                keyboardType: TextInputType.multiline,
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              Divider(thickness: 1.5, color: Colors.black),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              Center(
+                child: LargeButton(
+                  onTap: () {},
+                  buttonText: 'UPDATE LOG',
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
             ],
           ),
         ),

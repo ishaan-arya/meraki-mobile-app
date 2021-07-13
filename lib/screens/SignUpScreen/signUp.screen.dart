@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:meraki/utils/constants.dart';
 import 'package:meraki/screens/SignInScreen/signIn.screen.dart';
 import 'package:meraki/screens/MenuScreen/menu.screen.dart';
+import 'package:meraki/widgets/largeButton.widget.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const String id = 'signUpScreen_id';
@@ -67,23 +68,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ],
             ),
             SizedBox(
-              height: 40,
+              height: 30,
             ),
-            GestureDetector(
+            LargeButton(
               onTap: () {
                 Navigator.pushNamed(context, MenuScreen.id);
               },
-              child: Container(
-                height: 40,
-                width: 120,
-                decoration: BoxDecoration(
-                  color: kSecondaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text('SIGN UP', style: kButtonTextStyle),
-                ),
-              ),
+              buttonText: 'SIGN UP',
             )
           ],
         ),

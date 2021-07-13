@@ -26,7 +26,7 @@ class Meraki_App extends StatelessWidget {
         SignUpScreen.id: (context) => SignUpScreen(),
         SignInScreen.id: (context) => SignInScreen(),
       },
-      initialRoute: MyDailyLogScreen.id,
+      initialRoute: SignUpScreen.id,
     );
   }
 }
