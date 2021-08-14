@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meraki/screens/BloodTestReportsScreen/bloodTestReports.screen.dart';
-import 'package:meraki/screens/ScheduleAppointmentScreen/scheduleAppointment.screen.dart';
-import 'package:meraki/screens/MyDailyLogScreen/myDailyLog.screen.dart';
+import 'package:meraki/screens/user/BloodTestReportsScreen/bloodTestReports.screen.dart';
+import 'package:meraki/screens/user/ScheduleAppointmentScreen/scheduleAppointment.screen.dart';
+import 'package:meraki/screens/user/MyDailyLogScreen/myDailyLog.screen.dart';
 import 'package:meraki/widgets/menuButton.widget.dart';
 
 class MenuScreen extends StatefulWidget {

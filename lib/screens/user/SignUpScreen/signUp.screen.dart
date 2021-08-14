@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meraki/utils/constants.dart';
-import 'package:meraki/screens/MenuScreen/menu.screen.dart';
+import 'package:meraki/screens/user/SignInScreen/signIn.screen.dart';
+import 'package:meraki/screens/user/MenuScreen/menu.screen.dart';
 import 'package:meraki/widgets/largeButton.widget.dart';
 
-class SignInScreen extends StatefulWidget {
-  static const String id = 'signInScreen_id';
+class SignUpScreen extends StatefulWidget {
+  static const String id = 'signUpScreen_id';
 
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
-  String email;
-  String password;
-
+class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +25,7 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
             Center(
               child: Text(
-                'Sign In',
+                'Sign Up',
                 style: kHeadingTextStyle,
               ),
             ),
@@ -39,9 +37,6 @@ class _SignInScreenState extends State<SignInScreen> {
                   hintText: 'Email',
                 ),
                 keyboardType: TextInputType.emailAddress,
-                onChanged: (value) {
-                  email = value;
-                },
               ),
             ),
             SizedBox(height: 25),
@@ -52,19 +47,34 @@ class _SignInScreenState extends State<SignInScreen> {
                   hintText: 'Password',
                 ),
                 obscureText: true,
-                onChanged: (value) {
-                  password = value;
-                },
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Already have an account ?'),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, SignInScreen.id);
+                  },
+                  child: Text(
+                    'Sign In',
+                    style: TextStyle(color: Colors.black87),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30,
             ),
             LargeButton(
               onTap: () {
                 Navigator.pushNamed(context, MenuScreen.id);
               },
-              buttonText: 'SIGN IN',
+              buttonText: 'SIGN UP',
             )
           ],
         ),
