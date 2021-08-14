@@ -34,7 +34,7 @@ class _BloodTestReportsScreenState extends State<BloodTestReportsScreen> {
             SizedBox(height: MediaQuery.of(context).size.height * 0.05),
             Divider(thickness: 1.5, color: Colors.black),
             Padding(
-              padding: const EdgeInsets.all(40.0),
+              padding: EdgeInsets.all(40.0),
               child: DateField(),
             ),
           ],

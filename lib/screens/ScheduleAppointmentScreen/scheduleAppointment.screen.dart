@@ -3,6 +3,7 @@ import 'package:meraki/widgets/homeButton.widget.dart';
 import 'package:meraki/utils/constants.dart';
 import 'package:meraki/widgets/calendar.widget.dart';
 import 'package:meraki/widgets/timeField.widget.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class ScheduleAppointmentScreen extends StatefulWidget {
   static const String id = 'scheduleAppointmentScreen_id';
@@ -37,7 +38,17 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               Divider(thickness: 1.5, color: Colors.black),
-              Calendar(),
+              Calendar(
+                toggleCalendarDate: (CalendarSelectionDetails details) {
+                  setState(
+                    () {
+                      selectedDate = details.date;
+                      date =
+                          '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
+                    },
+                  );
+                },
+              ),
               TimeField(
                 promptText: 'Pick a Time',
               ),

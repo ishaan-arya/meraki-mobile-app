@@ -6,7 +6,7 @@ class DateField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DateTimeFormField(
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintStyle: TextStyle(color: Colors.black),
         errorStyle: TextStyle(color: Colors.redAccent),
         border: OutlineInputBorder(),
