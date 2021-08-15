@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:meraki/screens/BloodTestReportsScreen/bloodTestReports.screen.dart';
-import 'package:meraki/screens/MenuScreen/menu.screen.dart';
-import 'package:meraki/screens/ScheduleAppointmentScreen/scheduleAppointment.screen.dart';
-import 'package:meraki/screens/MyDailyLogScreen/myDailyLog.screen.dart';
-import 'package:meraki/screens/SignUpScreen/signUp.screen.dart';
-import 'package:meraki/screens/SignInScreen/signIn.screen.dart';
+import 'package:meraki/screens/user/BloodTestReportsScreen/bloodTestReports.screen.dart';
+import 'package:meraki/screens/user/MenuScreen/menu.screen.dart';
+import 'package:meraki/screens/user/ScheduleAppointmentScreen/scheduleAppointment.screen.dart';
+import 'package:meraki/screens/user/MyDailyLogScreen/myDailyLog.screen.dart';
+import 'package:meraki/screens/user/SignUpScreen/signUp.screen.dart';
+import 'package:meraki/screens/user/SignInScreen/signIn.screen.dart';
+import 'package:meraki/screens/admin/AdminMenuScreen/adminMenu.screen.dart';
 import 'package:meraki/utils/constants.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(Meraki_App());
 }
 
@@ -19,12 +23,15 @@ class Meraki_App extends StatelessWidget {
         scaffoldBackgroundColor: kPrimaryColor,
       ),
       routes: {
+        //User Screens
         MenuScreen.id: (context) => MenuScreen(),
         BloodTestReportsScreen.id: (context) => BloodTestReportsScreen(),
         ScheduleAppointmentScreen.id: (context) => ScheduleAppointmentScreen(),
         MyDailyLogScreen.id: (context) => MyDailyLogScreen(),
         SignUpScreen.id: (context) => SignUpScreen(),
         SignInScreen.id: (context) => SignInScreen(),
+        //Admin Screens
+        AdminMenuScreen.id: (context) => AdminMenuScreen(),
       },
       initialRoute: SignUpScreen.id,
     );
