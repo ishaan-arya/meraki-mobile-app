@@ -7,11 +7,8 @@ import 'package:meraki/screens/user/SignUpScreen/signUp.screen.dart';
 import 'package:meraki/screens/user/SignInScreen/signIn.screen.dart';
 import 'package:meraki/screens/admin/AdminMenuScreen/adminMenu.screen.dart';
 import 'package:meraki/utils/constants.dart';
-import 'package:firebase_core/firebase_core.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+void main() {
   runApp(Meraki_App());
 }
 
@@ -33,7 +30,7 @@ class Meraki_App extends StatelessWidget {
         //Admin Screens
         AdminMenuScreen.id: (context) => AdminMenuScreen(),
       },
-      initialRoute: SignUpScreen.id,
+      initialRoute: AdminMenuScreen.id,
     );
   }
 }
