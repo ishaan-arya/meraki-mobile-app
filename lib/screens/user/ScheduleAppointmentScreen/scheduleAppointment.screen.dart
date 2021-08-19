@@ -49,6 +49,7 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
                   );
                 },
               ),
+              Text(date),
               TimeField(
                 promptText: 'Pick a Time',
               ),
