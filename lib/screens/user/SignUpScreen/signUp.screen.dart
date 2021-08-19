@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meraki/utils/constants.dart';
 import 'package:meraki/screens/user/SignInScreen/signIn.screen.dart';
-import 'package:meraki/screens/user/MenuScreen/menu.screen.dart';
 import 'package:meraki/widgets/largeButton.widget.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -13,6 +12,9 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  String email;
+  String password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +39,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintText: 'Email',
                 ),
                 keyboardType: TextInputType.emailAddress,
+                onChanged: (value) {
+                  email = value;
+                },
               ),
             ),
             SizedBox(height: 25),
@@ -47,6 +52,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintText: 'Password',
                 ),
                 obscureText: true,
+                onChanged: (value) {
+                  password = value;
+                },
               ),
             ),
             SizedBox(
@@ -72,7 +80,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             LargeButton(
               onTap: () {
-                Navigator.pushNamed(context, MenuScreen.id);
+                // Navigator.pushNamed(context, MenuScreen.id);
+                print(email);
+                print(password);
               },
               buttonText: 'SIGN UP',
             )
