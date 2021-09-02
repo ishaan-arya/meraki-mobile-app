@@ -8,8 +8,11 @@ import 'package:meraki/screens/user/SignInScreen/signIn.screen.dart';
 import 'package:meraki/screens/admin/AdminMenuScreen/adminMenu.screen.dart';
 import 'package:meraki/screens/admin/AdminDailyLogScreen/adminDailyLog.screen.dart';
 import 'package:meraki/utils/constants.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(Meraki_App());
 }
 
@@ -32,7 +35,7 @@ class Meraki_App extends StatelessWidget {
         AdminMenuScreen.id: (context) => AdminMenuScreen(),
         AdminDailyLogScreen.id: (context) => AdminDailyLogScreen(),
       },
-      initialRoute: AdminDailyLogScreen.id,
+      initialRoute: SignUpScreen.id,
     );
   }
 }

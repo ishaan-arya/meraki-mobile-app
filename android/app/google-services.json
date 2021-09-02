@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "435302315607",
-    "project_id": "meraki-app-31ed4",
-    "storage_bucket": "meraki-app-31ed4.appspot.com"
+    "project_number": "583809204611",
+    "project_id": "meraki-d5c9a",
+    "storage_bucket": "meraki-d5c9a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:435302315607:android:c30ce6939e4dc1d06dd512",
+        "mobilesdk_app_id": "1:583809204611:android:0d24140101fcb04fb076b6",
         "android_client_info": {
-          "package_name": "com.android.application"
+          "package_name": "com.ishaanarya.meraki"
         }
       },
       "oauth_client": [
         {
-          "client_id": "435302315607-q84kc9vit5cj7c2qpe5q4ft30m43cs2k.apps.googleusercontent.com",
+          "client_id": "583809204611-vnofsue278c0hrejj0egbl26up19omlp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAn6M_8WV_BYsc-PKR8rmq5A3R40jPlbYY"
+          "current_key": "AIzaSyAZbJC_M9SVFJmhe1hHaZrd31Uvld3hGKQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "435302315607-q84kc9vit5cj7c2qpe5q4ft30m43cs2k.apps.googleusercontent.com",
+              "client_id": "583809204611-vnofsue278c0hrejj0egbl26up19omlp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

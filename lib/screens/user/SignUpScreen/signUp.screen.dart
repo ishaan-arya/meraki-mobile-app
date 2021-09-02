@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:meraki/utils/constants.dart';
 import 'package:meraki/screens/user/SignInScreen/signIn.screen.dart';
+import 'package:meraki/utils/constants.dart';
+import 'package:meraki/screens/user/MenuScreen/menu.screen.dart';
 import 'package:meraki/widgets/largeButton.widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const String id = 'signUpScreen_id';
@@ -14,6 +16,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   String email;
   String password;
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -79,13 +82,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
               height: 30,
             ),
             LargeButton(
-              onTap: () {
-                // Navigator.pushNamed(context, MenuScreen.id);
-                print(email);
-                print(password);
+              onTap: () async {
+                try {
+                  final newUser = await _auth.createUserWithEmailAndPassword(
+                      email: email, password: password);
+                  if (newUser != null) {
+                    Navigator.pushNamed(context, MenuScreen.id);
+                  }
+                } catch (e) {
+                  print(e);
+                }
               },
               buttonText: 'SIGN UP',
-            )
+            ),
           ],
         ),
       ),

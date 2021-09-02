@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>435302315607-ap1mpb7hdtdaavd1psveujcd9pm0f9ic.apps.googleusercontent.com</string>
+	<string>583809204611-9fd25lt6qckupv18cqir4gbqrr6sabuj.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.435302315607-ap1mpb7hdtdaavd1psveujcd9pm0f9ic</string>
+	<string>com.googleusercontent.apps.583809204611-9fd25lt6qckupv18cqir4gbqrr6sabuj</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBxNStmz1D8qoLVODkId49sYi2zwgMWAk0</string>
+	<string>AIzaSyBS5DyOO1fyuNISPaaHFF26k3PEURLCxcA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>435302315607</string>
+	<string>583809204611</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.ishaanarya.meraki</string>
 	<key>PROJECT_ID</key>
-	<string>meraki-app-31ed4</string>
+	<string>meraki-d5c9a</string>
 	<key>STORAGE_BUCKET</key>
-	<string>meraki-app-31ed4.appspot.com</string>
+	<string>meraki-d5c9a.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:435302315607:ios:98563dccdc229a606dd512</string>
+	<string>1:583809204611:ios:b699ef15e28ac493b076b6</string>
 </dict>
 </plist>
