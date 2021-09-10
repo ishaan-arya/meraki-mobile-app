@@ -72,8 +72,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   }
                 } catch (e) {
                   print(e);
-                }
-                ;
+                };
               },
               buttonText: 'SIGN IN',
             ),

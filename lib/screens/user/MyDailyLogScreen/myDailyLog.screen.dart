@@ -5,11 +5,12 @@ import 'package:meraki/utils/constants.dart';
 import 'package:meraki/widgets/largeButton.widget.dart';
 import 'package:meraki/widgets/timeField.widget.dart';
 import 'package:meraki/widgets/textInputField.widget.dart';
-
-enum WaterSelection {
-  glasses,
-  litres,
-}
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:meraki/screens/user/MyDailyLogScreen/local_widgets/waterCircle.widget.dart';
+import 'package:meraki/screens/user/MyDailyLogScreen/local_widgets/endSection.widget.dart';
+import 'package:meraki/screens/user/MyDailyLogScreen/local_widgets/circleButton.widget.dart';
+import 'package:meraki/screens/user/MyDailyLogScreen/local_widgets/sectionName.widget.dart';
+import 'package:meraki/screens/user/MyDailyLogScreen/local_widgets/waterToggleButton.widget.dart';
 
 enum MealSelection {
   measuringCups,
@@ -24,10 +25,9 @@ class MyDailyLogScreen extends StatefulWidget {
 }
 
 class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
-  WaterSelection selectedWaterType;
   MealSelection selectedMealType;
   String dropdownValue = 'Full';
-
+  final _firestore = FirebaseFirestore.instance;
   var water = 0.0;
   var _value = 0.0;
 
@@ -52,17 +52,11 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
                   style: kHeadingTextStyle,
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-              Divider(thickness: 1.5, color: Colors.black),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              EndSection(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    child: Icon(
-                      Icons.remove,
-                      size: 40,
-                    ),
+                  CircleButton(
                     onTap: () {
                       setState(
                         () {
@@ -73,42 +67,27 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
                         },
                       );
                     },
+                    icon: Icons.remove,
                   ),
                   SizedBox(
                     width: 15,
                   ),
-                  Container(
-                    height: 90,
-                    width: 90,
-                    child: Center(
-                      child: Text(
-                        '$water',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 40,
-                        ),
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                      color: kSecondaryColor,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
+                  WaterCircle(water: water),
                   SizedBox(
                     width: 15,
                   ),
-                  GestureDetector(
-                    child: Icon(
-                      Icons.add,
-                      size: 40,
-                    ),
+                  CircleButton(
                     onTap: () {
                       setState(
                         () {
-                          water = water + 0.5;
+                          if (water >= 0.0) {
+                            water = water + 0.5;
+                          }
+                          ;
                         },
                       );
                     },
+                    icon: Icons.add,
                   ),
                 ],
               ),
@@ -120,63 +99,9 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedWaterType = WaterSelection.glasses;
-                      });
-                    },
-                    child: Container(
-                      height: 35,
-                      width: 90,
-                      color: selectedWaterType == WaterSelection.glasses
-                          ? kActiveCardColor
-                          : kInactiveCardColor,
-                      child: Center(
-                        child: Text(
-                          'GLASSES',
-                          style: kSub3TextStyle,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedWaterType = WaterSelection.litres;
-                      });
-                    },
-                    child: Container(
-                      height: 35,
-                      width: 90,
-                      color: selectedWaterType == WaterSelection.litres
-                          ? kActiveCardColor
-                          : kInactiveCardColor,
-                      child: Center(
-                        child: Text(
-                          'LITRES',
-                          style: kSub3TextStyle,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              Divider(thickness: 1.5, color: Colors.black),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              Center(
-                child: Text(
-                  "SLEEP",
-                  style: kSubheadingTextStyle,
-                ),
-              ),
+              WaterToggleButton(),
+              EndSection(),
+              SectionName(text: 'SLEEP'),
               TimeField(
                 promptText: 'BEDTIME',
               ),
@@ -187,9 +112,7 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
                 hintText: 'QUALITY',
                 keyboardType: TextInputType.text,
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              Divider(thickness: 1.5, color: Colors.black),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              EndSection(),
               TextInputField(
                 hintText: 'FRUIT',
                 keyboardType: TextInputType.text,
@@ -206,9 +129,7 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
                   //implement add fruit functionality
                 },
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              Divider(thickness: 1.5, color: Colors.black),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              EndSection(),
               TextInputField(
                 hintText: 'EXERCISE TYPE',
                 keyboardType: TextInputType.text,
@@ -243,20 +164,13 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-              Center(
-                child: Text(
-                  'INTENSITY',
-                  style: kSubheadingTextStyle,
-                ),
-              ),
+              SectionName(text: 'INTENSITY'),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               AddItemButton(
                 buttonText: 'ADD EXERCISE',
                 onTap: () {},
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              Divider(thickness: 1.5, color: Colors.black),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              EndSection(),
               Row(
                 children: [
                   Expanded(
@@ -272,15 +186,8 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
                 ],
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-              Center(
-                child: Text(
-                  'ALCOHOL',
-                  style: kSubheadingTextStyle,
-                ),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              Divider(thickness: 1.5, color: Colors.black),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              SectionName(text: 'ALCOHOL'),
+              EndSection(),
               TextInputField(
                 hintText: 'MEAL',
                 keyboardType: TextInputType.text,
@@ -385,9 +292,7 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
                 buttonText: 'ADD MEAL',
                 onTap: () {},
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              Divider(thickness: 1.5, color: Colors.black),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              EndSection(),
               TextInputField(
                 hintText: 'MEDICINE',
                 keyboardType: TextInputType.text,
@@ -404,26 +309,24 @@ class _MyDailyLogScreenState extends State<MyDailyLogScreen> {
                   //implement add medicine functionality
                 },
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              Divider(thickness: 1.5, color: Colors.black),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              EndSection(),
               TextInputField(
                 hintText: 'ABILITY TO STICK TO THE PLAN',
                 keyboardType: TextInputType.multiline,
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-              Divider(thickness: 1.5, color: Colors.black),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              EndSection(),
               TextInputField(
                 hintText: 'COMMENTS FOR THE DAY',
                 keyboardType: TextInputType.multiline,
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-              Divider(thickness: 1.5, color: Colors.black),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              EndSection(),
               Center(
                 child: LargeButton(
-                  onTap: () {},
+                  onTap: () {
+                    // _firestore.collection('daily_logs').add({
+                    //   'water': water,
+                    // });
+                  },
                   buttonText: 'UPDATE LOG',
                 ),
               ),
