@@ -1,6 +1,6 @@
 # meraki
 
-A new Flutter application.
+A flutter application for a doctor to manage her entire treatment process! 🩺
 
 ## Getting Started
 
